@@ -30,5 +30,10 @@ public class Hand extends ArrayList<Card> {
 		return handTotal;
 		
 	}
+	public void printHand() {
+		for (Card card : this) {
+			System.out.println(card);
+		}
+	}
 
 }
