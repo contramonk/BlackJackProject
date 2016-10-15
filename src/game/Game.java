@@ -61,12 +61,12 @@ public class Game {
 
 	public static void dealPlayer() {
 		deal(pHand, deck);
-		System.out.println("Player: " + pHand + "\nHand Total: " + pHand.getHandTotal());
+		System.out.println("Player: " + pHand + "\nHand Total: " + pHand.handValue());
 	}
 
 	public static void dealDealer() {
 		deal(dHand, deck);
-		System.out.println("Dealer: " + dHand + "\nDealer Total: " + dHand.getHandTotal());
+		System.out.println("Dealer: " + dHand + "\nDealer Total: " + dHand.handValue());
 
 	}
 
