@@ -7,6 +7,8 @@ public class Game {
 	static Hand pHand = new Hand();
 	static Hand dHand = new Hand();
 	static Scanner kb = new Scanner(System.in);
+	static String dHitOrStand = "S";
+	static String pHitOrStand = "S";
 
 	public static void main(String[] args) {
 		run();
@@ -19,9 +21,6 @@ public class Game {
 		initialDeal();
 		startGame();
 
-		System.out.println(dHand);
-		System.out.println(pHand);
-
 	}
 
 	public static void deal(Hand h, Deck d) {
@@ -31,32 +30,40 @@ public class Game {
 	}
 
 	public static void startGame() {
-		String hitOrStand = "S";
-		System.out.println("The dealer has " + dHand);
-		System.out.println("You have " + pHand);
-		System.out.println("H) Hit\nS) Stand\nQ) Quit");
-		
-		hitOrStand = kb.next();
+		System.out.println("The dealer has " + dHand + "Total: " + dHand.handValue());
+		System.out.println("You have " + pHand + "Total: " + pHand.handValue());
+		System.out.println("H) Hit\nS) Stand\n");
 
-		while (!hitOrStand.equals("Q")) {
-			switch (hitOrStand) {
+		dHitOrStand = "F";
+		while (!(pHitOrStand.equals("S") && dHitOrStand.equals("S"))) {
+			pHitOrStand = kb.next();
+			switch (pHitOrStand) {
 			case "H":
-				dealDealer();
 				playerTurn();
-				System.out.println("H) Hit\nS) Stand\nQ) Quit");
-				hitOrStand = kb.next();
+				dealerTurn();
 				break;
 			case "S":
-				dealDealer();
+				dealerTurn();
 				break;
 			}
 		}
 	}
+
 	public static void playerTurn() {
 		dealPlayer();
-		//if (pHand)
-		
-		
+		// if (pHand)
+
+	}
+
+	public static void dealerTurn() {
+		if (pHitOrStand.equals("S")) {
+			while (dHand.handValue() <= 17) {
+				System.out.println("Dealer will hit");
+				dealDealer();
+			}
+		}
+		System.out.println("Dealer is staying");
+		dHitOrStand = "S";
 	}
 
 	public static void dealPlayer() {

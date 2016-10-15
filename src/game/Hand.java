@@ -23,13 +23,9 @@ public class Hand extends ArrayList<Card> {
 	}
 	
 	public int handValue() {
-		for (int i = 0; i < this.size(); i+=2) {
-			try {
-			handTotal += this.get(i).getValue() + this.get(i+1).getValue();
-			}
-			catch(IndexOutOfBoundsException iob) {
-				handTotal += this.get(i).getValue();
-			}
+			handTotal = 0;
+		for (int i = 0; i < this.size(); i++) {
+			handTotal += this.get(i).getValue();
 		}
 		return handTotal;
 		
