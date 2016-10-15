@@ -18,18 +18,14 @@ public class Game {
 		run();
 
 	}
+
 	public static void run() {
+		pBust = false;
+		dBust = false;
 
 		introduction();
 		initialDeal();
 		startGame();
-		System.out.println("checking 1 2 3");
-		if(pBust) {
-			System.out.println(dealer.getName() + " is the winner.");
-		}
-		else if(dBust) {
-			System.out.println(player.getName() + " is the winner.");
-		}
 
 	}
 
@@ -91,11 +87,12 @@ public class Game {
 		if (pHand.handValue() > 21) {
 			System.out.println("Player Busted");
 			pBust = true;
+			busted();
+			restart();
 			return pBust;
 
-		}
-		else {
-		return pBust;
+		} else {
+			return pBust;
 		}
 	}
 
@@ -107,6 +104,8 @@ public class Game {
 			System.out.println("Dealer Total: " + dHand.handValue());
 			System.out.println("Dealer busted");
 			dBust = true;
+			busted();
+			restart();
 		} else {
 			System.out.println("Dealer");
 			dHand.printHand();
@@ -127,17 +126,37 @@ public class Game {
 	}
 
 	public static void introduction() {
-		
+
 		System.out.println("Welcome to BlackJack.");
 		System.out.println("What is your name?");
 		String playerName = kb.next();
 		player.setName(playerName);
-		
+
 		System.out.println("What would you like your opponents name to be?");
 		String dealerName = kb.next();
 		dealer.setName(dealerName);
-		
+
 		System.out.println(dealerName + " is dealing.");
 
+	}
+
+	public static void busted() {
+		System.out.println("checking 1 2 3");
+		if (pBust) {
+			System.out.println(dealer.getName() + " is the winner.");
+		} else if (dBust) {
+			System.out.println(player.getName() + " is the winner.");
+		}
+	}
+
+	public static void restart() {
+		System.out.println("\nWould you like to play again (Y/N)?");
+		String restart = kb.next();
+		if (restart.equals("Y")) {
+			run();
+		}
+		else {
+			System.exit(1);
+		}
 	}
 }
