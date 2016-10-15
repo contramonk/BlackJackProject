@@ -40,6 +40,10 @@ public class Deck extends ArrayList<Card> implements Comparator<String> {
 	public void shuffle() {
 		Collections.shuffle(this);
 	}
+	public Card dealHand() {
+		Card topCard = this.get(0);
+		this.remove(0);
+		return(topCard);
+	}
 
-	
 }

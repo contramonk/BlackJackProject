@@ -71,6 +71,6 @@ public class Card {
 	}
 	// Print Object
 	public String toString() {
-		return "suit: " + suit + " rank: " + rank + " value: " + value;
+		return "suit: " + suit + " rank: " + rank + " value: " + value + "\n";
 	}
 }
