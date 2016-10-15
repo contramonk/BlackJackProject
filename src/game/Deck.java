@@ -43,7 +43,7 @@ public class Deck extends ArrayList<Card> implements Comparator<String> {
 	public Card dealHand() {
 		Card topCard = this.get(0);
 		this.remove(0);
-		return(topCard);
+		return topCard;
 	}
 
 }

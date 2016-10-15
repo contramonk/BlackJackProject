@@ -6,12 +6,27 @@ public class Game {
 		
 	}
 	public static void run() {
+		
 		Deck deck = new Deck(0);
 		deck.addCardsToDeck();
-		Hand h1 = new Hand();
-		Player p1 = new Player("john", h1, 5000);
+		Hand pHand = new Hand();
+		Hand dHand = new Hand();
+		Player player = new Player("john", pHand, 5000);
+		Dealer dealer = new Dealer("Fred", dHand, 5000);
 		
-		System.out.println(deck);
+		deal(pHand, deck);
+		deal(dHand, deck);
+		deal(pHand, deck);
+		
+		
+		
+		
+		System.out.println(pHand);
+		
+	}
+	public static void deal(Hand h, Deck d) {
+		Card deal = d.dealHand();
+		h.addCardToHand(deal);
 		
 	}
 }

@@ -1,9 +1,12 @@
 package game;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Human {
 	private String name;
-	private Hand hand;
 	private double wallet;
+	private Hand hand;
 	
 	// Constructor
 	public Human(String n, Hand h, double w) {
@@ -11,6 +14,7 @@ public class Human {
 		setHand(h);
 		setWallet(w);
 	}
+	
 	// Get
 	public String getName() {
 		return name;
