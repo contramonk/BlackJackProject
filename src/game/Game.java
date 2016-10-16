@@ -20,8 +20,13 @@ public class Game {
 	}
 
 	public static void run() {
+		deck = new Deck(0);
+		pHand = new Hand();
+		dHand = new Hand();
 		pBust = false;
 		dBust = false;
+		player = new Player("def", pHand, 5000);
+		dealer = new Dealer("tim", dHand, 5000);
 
 		introduction();
 		initialDeal();
@@ -36,16 +41,18 @@ public class Game {
 	}
 
 	public static void startGame() {
-		System.out.println("Dealer");
-		dHand.printHand();
-		System.out.println("Total: " + dHand.handValue());
 		System.out.println();
 		System.out.println("Player");
 		pHand.printHand();
 		System.out.println("Total: " + pHand.handValue() + "\n");
+		System.out.println();
+		System.out.println("Dealer");
+		dHand.printHand();
+		System.out.println("Total: " + dHand.handValue());
 
 		dHitOrStand = "F";
-		while (!(pHitOrStand.equals("S") && dHitOrStand.equals("S")) || (pBust == false & dBust == false)) {
+		while (!(pHitOrStand.equals("S") && dHitOrStand.equals("S")) || (pBust && dBust)) {
+			System.out.println();
 			System.out.println("H) Hit\nS) Stand\n");
 			pHitOrStand = kb.next();
 			switch (pHitOrStand) {
@@ -57,6 +64,9 @@ public class Game {
 				dealerTurn();
 				break;
 			}
+		}
+		if (!(pHitOrStand.equals("S") && dHitOrStand.equals("S"))) {
+			judgement();
 		}
 
 	}
@@ -71,9 +81,9 @@ public class Game {
 		while (dHand.handValue() <= 17) {
 			System.out.println("Dealer will hit");
 			dealDealer();
-		}
+		} // after loop finishes this prints causing duplication
+		System.out.println();
 		System.out.println("Dealer");
-		dHand.printHand();
 		System.out.println("Dealer Total: " + dHand.handValue());
 		System.out.println("Dealer is staying \n");
 		dHitOrStand = "S";
@@ -81,13 +91,14 @@ public class Game {
 
 	public static boolean dealPlayer() {
 		deal(pHand, deck);
+		System.out.println();
 		System.out.println("Player");
 		pHand.printHand();
 		System.out.println("Hand Total: " + pHand.handValue());
 		if (pHand.handValue() > 21) {
 			System.out.println("Player Busted");
 			pBust = true;
-			busted();
+			judgement();
 			restart();
 			return pBust;
 
@@ -99,14 +110,16 @@ public class Game {
 	public static boolean dealDealer() {
 		deal(dHand, deck);
 		if (dHand.handValue() > 21) {
+			System.out.println();
 			System.out.println("Dealer");
 			dHand.printHand();
 			System.out.println("Dealer Total: " + dHand.handValue());
 			System.out.println("Dealer busted");
 			dBust = true;
-			busted();
+			judgement();
 			restart();
 		} else {
+			System.out.println();
 			System.out.println("Dealer");
 			dHand.printHand();
 			System.out.println("Dealer Total: " + dHand.handValue());
@@ -140,12 +153,21 @@ public class Game {
 
 	}
 
-	public static void busted() {
-		System.out.println("checking 1 2 3");
+	public static void judgement() {
+		System.out.println();
+		System.out.println("Scoring ...");
+
 		if (pBust) {
 			System.out.println(dealer.getName() + " is the winner.");
 		} else if (dBust) {
 			System.out.println(player.getName() + " is the winner.");
+		} else {
+			if (dHand.handValue() > pHand.handValue()) {
+				System.out.println(dealer.getName() + " is the winner");
+			} else {
+				System.out.println(player.getName() + " is the winner");
+
+			}
 		}
 	}
 
@@ -154,8 +176,7 @@ public class Game {
 		String restart = kb.next();
 		if (restart.equals("Y")) {
 			run();
-		}
-		else {
+		} else {
 			System.exit(1);
 		}
 	}
