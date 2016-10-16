@@ -65,7 +65,7 @@ public class Game {
 				break;
 			}
 		}
-		if (!(pHitOrStand.equals("S") && dHitOrStand.equals("S"))) {
+		if (pHitOrStand.equals("S") && dHitOrStand.equals("S")) {
 			judgement();
 		}
 
@@ -81,6 +81,10 @@ public class Game {
 		while (dHand.handValue() <= 17) {
 			System.out.println("Dealer will hit");
 			dealDealer();
+			if (pHitOrStand.equals("H")) {
+					playerTurn();
+			}
+			
 		} // after loop finishes this prints causing duplication
 		System.out.println();
 		System.out.println("Dealer");
@@ -159,14 +163,17 @@ public class Game {
 
 		if (pBust) {
 			System.out.println(dealer.getName() + " is the winner.");
+			restart();
 		} else if (dBust) {
 			System.out.println(player.getName() + " is the winner.");
+			restart();
 		} else {
 			if (dHand.handValue() > pHand.handValue()) {
 				System.out.println(dealer.getName() + " is the winner");
+				restart();
 			} else {
 				System.out.println(player.getName() + " is the winner");
-
+				restart();
 			}
 		}
 	}
