@@ -50,7 +50,7 @@ public class Game {
 		dHand.printHand();
 		System.out.println("Total: " + dHand.handValue());
 		judgement();
-
+// get rid of spade value 0
 		dHitOrStand = "F";
 		while (!(pHitOrStand.equals("S") && dHitOrStand.equals("S")) || (pBust && dBust)) {
 			System.out.println();
@@ -66,7 +66,7 @@ public class Game {
 				break;
 			}
 		}
-		if (pHitOrStand.equals("S") && dHitOrStand.equals("S")) {
+		if (pHitOrStand.equals("S") && dHitOrStand.equals("S") || pBust == false || dBust == false) {
 			judgement();
 		}
 
@@ -79,7 +79,7 @@ public class Game {
 	}
 
 	public static void dealerTurn() {
-		while (dHand.handValue() <= 17) {
+		while (dHand.handValue() < 17) {
 			System.out.println("Dealer will hit");
 			dealDealer();
 			if (pHitOrStand.equals("H")) {
@@ -164,7 +164,6 @@ public class Game {
 
 	public static void judgement() {
 		System.out.println();
-		System.out.println("Scoring ...");
 
 		if (pBust) {
 			System.out.println(dealer.getName() + " is the winner.");
@@ -179,12 +178,14 @@ public class Game {
 			System.out.println(player.getName() + " Player BLACKJACK.");
 			restart();
 		} else if (dHand.handValue() > pHand.handValue() && pHand.size() > 2 && dHand.size() > 2) {
-				System.out.println(dealer.getName() + " is the winner");
-				restart();
+			System.out.println(dealer.getName() + " is the winner");
+			restart();
 		} else if (pHand.handValue() > dHand.handValue() && pHand.size() > 2 && dHand.size() > 2) {
-				System.out.println(player.getName() + " is the winner");
-				restart();
-			
+			System.out.println(player.getName() + " is the winner");
+			restart();
+		} else if (pHand.handValue() == dHand.handValue() && pHand.size() > 2 && dHand.size() > 2) {
+			System.out.println(dealer.getName() + " is the winner.");
+
 		}
 
 	}

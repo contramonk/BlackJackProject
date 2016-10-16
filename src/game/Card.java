@@ -43,9 +43,7 @@ public class Card {
 		case TWO:
 			setValue(2);
 			break;
-		case ONE:
-			setValue(1);
-			break;
+
 		}
 		
 	}
