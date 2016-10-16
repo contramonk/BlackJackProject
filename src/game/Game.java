@@ -26,7 +26,7 @@ public class Game {
 		pBust = false;
 		dBust = false;
 		player = new Player("def", pHand, 5000);
-		dealer = new Dealer("tim", dHand, 5000);
+		dealer = new Dealer("def", dHand, 5000);
 		dHitOrStand = "C";
 		pHitOrStand = "C";
 
@@ -44,13 +44,19 @@ public class Game {
 
 	public static void startGame() {
 		System.out.println();
-		System.out.println("Player");
+		System.out.println(player.getName() + " (Player)");
+		System.out.println("----------------------------------------");
 		pHand.printHand();
-		System.out.println("Total: " + pHand.handValue() + "\n");
+		System.out.println("----------------------------------------");
+		System.out.println("Total: " + pHand.handValue());
+		System.out.println("----------------------------------------");
 		System.out.println();
-		System.out.println("Dealer");
+		System.out.println(dealer.getName() + " (Dealer)");
+		System.out.println("----------------------------------------");
 		dHand.printHand();
+		System.out.println("----------------------------------------");
 		System.out.println("Total: " + dHand.handValue());
+		System.out.println("----------------------------------------");
 		judgement();
 
 		dHitOrStand = "F";
@@ -87,7 +93,7 @@ public class Game {
 	public static void dealerTurn() {
 		while (dHand.handValue() < 17) {
 			System.out.println();
-			System.out.println("Dealer will hit");
+			System.out.println(dealer.getName() + " (Dealer) will hit");
 			dealDealer();
 			if (pHitOrStand.equals("H")) { // player auto hit bug
 				gameLoop();
@@ -95,7 +101,7 @@ public class Game {
 
 		} // after loop finishes this prints causing duplication
 		System.out.println();
-		System.out.println("Dealer");
+		System.out.println(player.getName() + " (Dealer)");
 		System.out.println("Dealer Total: " + dHand.handValue());
 		System.out.println("Dealer is staying \n");
 		dHitOrStand = "S";
@@ -104,11 +110,14 @@ public class Game {
 	public static boolean dealPlayer() {
 		deal(pHand, deck);
 		System.out.println();
-		System.out.println("Player");
+		System.out.println(player.getName() + " (Player)");
+		System.out.println("----------------------------------------");
 		pHand.printHand();
+		System.out.println("----------------------------------------");
 		System.out.println("Hand Total: " + pHand.handValue());
+		System.out.println("----------------------------------------");
 		if (pHand.handValue() > 21) {
-			System.out.println("Player Busted");
+			System.out.println("~~~Player Busted~~~");
 			pBust = true;
 			judgement();
 			return pBust;
@@ -125,10 +134,13 @@ public class Game {
 		deal(dHand, deck);
 		if (dHand.handValue() > 21) {
 			System.out.println();
-			System.out.println("Dealer");
+			System.out.println(dealer.getName() + "(Dealer)");
+			System.out.println("----------------------------------------");
 			dHand.printHand();
+			System.out.println("----------------------------------------");
 			System.out.println("Dealer Total: " + dHand.handValue());
-			System.out.println("Dealer busted");
+			System.out.println("----------------------------------------");
+			System.out.println("~~~Dealer busted~~~");
 			dBust = true;
 			judgement();
 			return dBust;
@@ -137,7 +149,7 @@ public class Game {
 			return dBust;
 		} else {
 			System.out.println();
-			System.out.println("Dealer");
+			System.out.println(dealer.getName() + "(Dealer)");
 			dHand.printHand();
 			System.out.println("Dealer Total: " + dHand.handValue());
 			return dBust;
@@ -161,7 +173,7 @@ public class Game {
 		String playerName = kb.next();
 		player.setName(playerName);
 
-		System.out.println("What would you like your opponents name to be?");
+		System.out.println(playerName + " you like your opponents name to be?");
 		String dealerName = kb.next();
 		dealer.setName(dealerName);
 		System.out.println();
@@ -173,25 +185,25 @@ public class Game {
 		System.out.println();
 
 		if (pBust) {
-			System.out.println(dealer.getName() + " is the winner.");
+			System.out.println("****** " + dealer.getName() + " is the winner. ******");
 			restart();
 		} else if (dBust) {
-			System.out.println(player.getName() + " is the winner.");
+			System.out.println("****** " + player.getName() + " is the winner. ******");
 			restart();
 		} else if (dHand.handValue() == 21) {
-			System.out.println(dealer.getName() + " Dealer BLACKJACK.");
+			System.out.println("****** " + dealer.getName() + " has BLACKJACK. ******");
 			restart();
 		} else if (pHand.handValue() == 21) {
-			System.out.println(player.getName() + " Player BLACKJACK.");
+			System.out.println("****** " + player.getName() + " has BLACKJACK. ******");
 			restart();
 		} else if (dHand.handValue() > pHand.handValue() && pHitOrStand.equals("S") && dHitOrStand.equals("S")) {
-			System.out.println(dealer.getName() + " is the winner");
+			System.out.println("****** " + dealer.getName() + " is the winner. ******");
 			restart();
 		} else if (pHand.handValue() > dHand.handValue() && pHitOrStand.equals("S") && dHitOrStand.equals("S")) {
-			System.out.println(player.getName() + " is the winner");
+			System.out.println(" ****** " + player.getName() + " is the winner. ******");
 			restart();
 		} else if (pHand.handValue() == dHand.handValue() && pHitOrStand.equals("S") && dHitOrStand.equals("S")) {
-			System.out.println(dealer.getName() + " is the winner.");
+			System.out.println("****** " + dealer.getName() + " is the winner. ******");
 			restart();
 		}
 

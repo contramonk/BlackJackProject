@@ -69,6 +69,6 @@ public class Card {
 	}
 	// Print Object
 	public String toString() {
-		return "suit: " + suit + " rank: " + rank;
+		return rank + " of " + suit;
 	}
 }
