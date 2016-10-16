@@ -49,6 +49,7 @@ public class Game {
 		System.out.println("Dealer");
 		dHand.printHand();
 		System.out.println("Total: " + dHand.handValue());
+		judgement();
 
 		dHitOrStand = "F";
 		while (!(pHitOrStand.equals("S") && dHitOrStand.equals("S")) || (pBust && dBust)) {
@@ -82,9 +83,9 @@ public class Game {
 			System.out.println("Dealer will hit");
 			dealDealer();
 			if (pHitOrStand.equals("H")) {
-					playerTurn();
+				playerTurn();
 			}
-			
+
 		} // after loop finishes this prints causing duplication
 		System.out.println();
 		System.out.println("Dealer");
@@ -103,9 +104,11 @@ public class Game {
 			System.out.println("Player Busted");
 			pBust = true;
 			judgement();
-			restart();
 			return pBust;
 
+		} else if (pHand.handValue() == 21) {
+			judgement();
+			return pBust;
 		} else {
 			return pBust;
 		}
@@ -121,16 +124,18 @@ public class Game {
 			System.out.println("Dealer busted");
 			dBust = true;
 			judgement();
-			restart();
+			return dBust;
+		} else if (dHand.handValue() == 21) {
+			judgement();
+			return dBust;
 		} else {
 			System.out.println();
 			System.out.println("Dealer");
 			dHand.printHand();
 			System.out.println("Dealer Total: " + dHand.handValue());
-
+			return dBust;
 		}
 
-		return dBust;
 	}
 
 	public static void initialDeal() {
@@ -167,15 +172,21 @@ public class Game {
 		} else if (dBust) {
 			System.out.println(player.getName() + " is the winner.");
 			restart();
-		} else {
-			if (dHand.handValue() > pHand.handValue()) {
+		} else if (dHand.handValue() == 21) {
+			System.out.println(dealer.getName() + " Dealer BLACKJACK.");
+			restart();
+		} else if (pHand.handValue() == 21) {
+			System.out.println(player.getName() + " Player BLACKJACK.");
+			restart();
+		} else if (dHand.handValue() > pHand.handValue() && pHand.size() > 2 && dHand.size() > 2) {
 				System.out.println(dealer.getName() + " is the winner");
 				restart();
-			} else {
+		} else if (pHand.handValue() > dHand.handValue() && pHand.size() > 2 && dHand.size() > 2) {
 				System.out.println(player.getName() + " is the winner");
 				restart();
-			}
+			
 		}
+
 	}
 
 	public static void restart() {
