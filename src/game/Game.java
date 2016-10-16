@@ -190,6 +190,7 @@ public class Game {
 
 	}
 
+
 	public static void restart() {
 		System.out.println("\nWould you like to play again (Y/N)?");
 		String restart = kb.next();
