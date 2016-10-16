@@ -7,8 +7,8 @@ public class Game {
 	static Hand pHand = new Hand();
 	static Hand dHand = new Hand();
 	static Scanner kb = new Scanner(System.in);
-	static String dHitOrStand = "S";
-	static String pHitOrStand = "S";
+	static String dHitOrStand = "C";
+	static String pHitOrStand = "C";
 	static boolean dBust = false;
 	static boolean pBust = false;
 	static Player player = new Player("def", pHand, 5000);
@@ -27,6 +27,8 @@ public class Game {
 		dBust = false;
 		player = new Player("def", pHand, 5000);
 		dealer = new Dealer("tim", dHand, 5000);
+		dHitOrStand = "C";
+		pHitOrStand = "C";
 
 		introduction();
 		initialDeal();
@@ -80,9 +82,10 @@ public class Game {
 
 	public static void dealerTurn() {
 		while (dHand.handValue() < 17) {
+			System.out.println();
 			System.out.println("Dealer will hit");
 			dealDealer();
-			if (pHitOrStand.equals("H")) {
+			if (pHitOrStand.equals("H")) { // player auto hit bug
 				playerTurn();
 			}
 
@@ -157,7 +160,7 @@ public class Game {
 		System.out.println("What would you like your opponents name to be?");
 		String dealerName = kb.next();
 		dealer.setName(dealerName);
-
+		System.out.println();
 		System.out.println(dealerName + " is dealing.");
 
 	}
@@ -177,15 +180,15 @@ public class Game {
 		} else if (pHand.handValue() == 21) {
 			System.out.println(player.getName() + " Player BLACKJACK.");
 			restart();
-		} else if (dHand.handValue() > pHand.handValue() && pHand.size() > 2 && dHand.size() > 2) {
+		} else if (dHand.handValue() > pHand.handValue() && pHitOrStand.equals("S") && dHitOrStand.equals("S")) {
 			System.out.println(dealer.getName() + " is the winner");
 			restart();
-		} else if (pHand.handValue() > dHand.handValue() && pHand.size() > 2 && dHand.size() > 2) {
+		} else if (pHand.handValue() > dHand.handValue() && pHitOrStand.equals("S") && dHitOrStand.equals("S")) {
 			System.out.println(player.getName() + " is the winner");
 			restart();
-		} else if (pHand.handValue() == dHand.handValue() && pHand.size() > 2 && dHand.size() > 2) {
+		} else if (pHand.handValue() == dHand.handValue() && pHitOrStand.equals("S") && dHitOrStand.equals("S")) {
 			System.out.println(dealer.getName() + " is the winner.");
-
+			restart();
 		}
 
 	}
