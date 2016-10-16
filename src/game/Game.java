@@ -52,8 +52,16 @@ public class Game {
 		dHand.printHand();
 		System.out.println("Total: " + dHand.handValue());
 		judgement();
-// get rid of spade value 0
+
 		dHitOrStand = "F";
+		gameLoop();
+
+		if (pHitOrStand.equals("S") && dHitOrStand.equals("S") || pBust == false || dBust == false) {
+			judgement();
+		}
+
+	}
+	public static void gameLoop() {
 		while (!(pHitOrStand.equals("S") && dHitOrStand.equals("S")) || (pBust && dBust)) {
 			System.out.println();
 			System.out.println("H) Hit\nS) Stand\n");
@@ -67,16 +75,12 @@ public class Game {
 				dealerTurn();
 				break;
 			}
-		}
-		if (pHitOrStand.equals("S") && dHitOrStand.equals("S") || pBust == false || dBust == false) {
-			judgement();
-		}
-
+		} // end game loop
+		
 	}
 
 	public static void playerTurn() {
 		dealPlayer();
-		// if (pHand)
 
 	}
 
@@ -86,7 +90,7 @@ public class Game {
 			System.out.println("Dealer will hit");
 			dealDealer();
 			if (pHitOrStand.equals("H")) { // player auto hit bug
-				playerTurn();
+				gameLoop();
 			}
 
 		} // after loop finishes this prints causing duplication
