@@ -150,8 +150,11 @@ public class Game {
 		} else {
 			System.out.println();
 			System.out.println(dealer.getName() + "(Dealer)");
+			System.out.println("----------------------------------------");
 			dHand.printHand();
+			System.out.println("----------------------------------------");
 			System.out.println("Dealer Total: " + dHand.handValue());
+			System.out.println("----------------------------------------");
 			return dBust;
 		}
 
