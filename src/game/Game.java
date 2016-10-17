@@ -70,8 +70,9 @@ public class Game {
 	public static void gameLoop() {
 		while (!(pHitOrStand.equals("S") && dHitOrStand.equals("S")) || (pBust && dBust)) {
 			System.out.println();
-			System.out.println("H) Hit\nS) Stand\n");
+			System.out.print("H) Hit\nS) Stand >> ");
 			pHitOrStand = kb.next();
+			System.out.println();
 			switch (pHitOrStand) {
 			case "H":
 				playerTurn();
@@ -172,11 +173,11 @@ public class Game {
 	public static void introduction() {
 
 		System.out.println("Welcome to BlackJack.");
-		System.out.println("What is your name?");
+		System.out.print("What is your name? >> ");
 		String playerName = kb.next();
 		player.setName(playerName);
-
-		System.out.println(playerName + " you like your opponents name to be?");
+		System.out.println();
+		System.out.print(playerName + ",  what is your opponents name? >> ");
 		String dealerName = kb.next();
 		dealer.setName(dealerName);
 		System.out.println();
@@ -214,7 +215,7 @@ public class Game {
 
 
 	public static void restart() {
-		System.out.println("\nWould you like to play again (Y/N)?");
+		System.out.print("\nWould you like to play again (Y/N)? >> ");
 		String restart = kb.next();
 		if (restart.equals("Y")) {
 			run();
