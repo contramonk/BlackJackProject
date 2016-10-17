@@ -8,7 +8,7 @@ A game of BlackJack: week three project at Skill Distillery.
 When the game begins both the player and dealer are dealt two cards.
 2. If a player or dealer is dealt 21 the game is over. Otherwise the player can choose to hit or stay.
 3. Once the player has completed their turn the dealer will begin their turn.
-4.The game is immediately over if either player gets above 21.
+4. The game is immediately over if either player gets above 21.
 
 ### How to Play
 
