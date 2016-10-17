@@ -16,11 +16,11 @@ Download the game files and run it from Game.java. Enter your name and the deale
 
 ### Improvements
 
-I need to improve the design of this program. As it stands the code is unweildy. I think refactoring and increasing the modularity of this program will help if in the future I want to add upon the program.
+I need to improve the design of this program. As it stands the code is unweildy. I think refactoring and increasing the modularity of this program will help especially, if in the future, I want to add upon the program.
 
-I definitely need to better understand how to design applications, so that I can make changes that don't cascade throughout the program.
+Better understanding program design is my ultimate goal, so that I can make changes that don't cascade throughout the program.
 
-I would also like to add more error checking, using test classes.
+I would also like to add Junit tests.
 
 
 
