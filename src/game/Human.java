@@ -8,6 +8,7 @@ public class Human {
 	private String name;
 	private double wallet;
 	private Hand hand;
+	private boolean bust = false;
 
 	// Constructor
 	public Human(String n, double w) {
@@ -28,6 +29,9 @@ public class Human {
 	public double getWallet() {
 		return wallet;
 	}
+	public boolean getBust() {
+		return bust;
+	}
 
 	// Set
 	public void setName(String n) {
@@ -41,5 +45,10 @@ public class Human {
 	public void setWallet(double w) {
 		this.wallet = w;
 	}
+	public void setBust(boolean b) {
+		this.bust = b;
+	}
+	
+	
 
 }
