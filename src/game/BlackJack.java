@@ -43,7 +43,7 @@ public class BlackJack {
 		System.out.println("----------------------------------------");
 		dealer.getHand().printHand();
 		System.out.println("----------------------------------------");
-		System.out.println("Total: " + player.getHand().handValue());
+		System.out.println("Total: " + dealer.getHand().handValue());
 		System.out.println("----------------------------------------");
 		judgement();
 
