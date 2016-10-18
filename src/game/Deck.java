@@ -36,9 +36,8 @@ public class Deck extends ArrayList<Card> implements Comparator<String> {
 	}
 	
 	// Deal
-	 public void deal(Hand h) {
-			Card deal = this.dealHand();
-			h.addCardToHand(deal);
+	 public void deal(Human hum) {
+			hum.getHand().addCardToHand(dealHand());
 
 		}
 

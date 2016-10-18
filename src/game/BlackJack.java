@@ -5,24 +5,20 @@ import java.util.Scanner;
  public class BlackJack {
 	
 	private Deck deck = new Deck();
-	private Hand pHand = new Hand();
-	private Hand dHand = new Hand();
 	private Scanner kb = new Scanner(System.in);
 	private String dHitOrStand = "C";
 	private String pHitOrStand = "C";
 	private boolean dBust = false;
 	private boolean pBust = false;
-	private Player player = new Player("def", pHand, 5000);
-	private Dealer dealer = new Dealer("tim", dHand, 5000);
+	private Player player = new Player("def", 5000.0);
+	private Dealer dealer = new Dealer("tim", 5000.0);
 
 	 public void run() {
 		deck = new Deck();
-		pHand = new Hand();
-		dHand = new Hand();
 		pBust = false;
 		dBust = false;
-		player = new Player("def", pHand, 5000);
-		dealer = new Dealer("def", dHand, 5000);
+		player = new Player("def", 5000);
+		dealer = new Dealer("def", 5000);
 		dHitOrStand = "C";
 		pHitOrStand = "C";
 
@@ -39,16 +35,16 @@ import java.util.Scanner;
 		System.out.println();
 		System.out.println(player.getName() + " (Player)");
 		System.out.println("----------------------------------------");
-		pHand.printHand();
+		player.getHand().printHand();
 		System.out.println("----------------------------------------");
-		System.out.println("Total: " + pHand.handValue());
+		System.out.println("Total: " + player.getHand().handValue());
 		System.out.println("----------------------------------------");
 		System.out.println();
 		System.out.println(dealer.getName() + " (Dealer)");
 		System.out.println("----------------------------------------");
-		dHand.printHand();
+		dealer.getHand().printHand();
 		System.out.println("----------------------------------------");
-		System.out.println("Total: " + dHand.handValue());
+		System.out.println("Total: " + player.getHand().handValue());
 		System.out.println("----------------------------------------");
 		judgement();
 
@@ -85,7 +81,7 @@ import java.util.Scanner;
 	}
 
 	 private void dealerTurn() {
-		while (dHand.handValue() < 17) {
+		while (dealer.getHand().handValue() < 17) {
 			System.out.println();
 			System.out.println(dealer.getName() + " (Dealer) will hit");
 			dealDealer();
@@ -96,27 +92,27 @@ import java.util.Scanner;
 		} // after loop finishes this prints causing duplication
 		System.out.println();
 		System.out.println(player.getName() + " (Dealer)");
-		System.out.println("Dealer Total: " + dHand.handValue());
+		System.out.println("Dealer Total: " + dealer.getHand().handValue());
 		System.out.println("Dealer is staying \n");
 		dHitOrStand = "S";
 	}
 
 	 private boolean dealPlayer() {
-		deck.deal(pHand);
+		deck.deal(player);
 		System.out.println();
 		System.out.println(player.getName() + " (Player)");
 		System.out.println("----------------------------------------");
-		pHand.printHand();
+		player.getHand().printHand();
 		System.out.println("----------------------------------------");
-		System.out.println("Hand Total: " + pHand.handValue());
+		System.out.println("Hand Total: " + player.getHand().handValue());
 		System.out.println("----------------------------------------");
-		if (pHand.handValue() > 21) {
+		if (player.getHand().handValue() > 21) {
 			System.out.println("~~~Player Busted~~~");
 			pBust = true;
 			judgement();
 			return pBust;
 
-		} else if (pHand.handValue() == 21) {
+		} else if (player.getHand().handValue() == 21) {
 			judgement();
 			return pBust;
 		} else {
@@ -125,29 +121,29 @@ import java.util.Scanner;
 	}
 
 	 private boolean dealDealer() {
-		deck.deal(dHand);
-		if (dHand.handValue() > 21) {
+		deck.deal(dealer);
+		if (dealer.getHand().handValue() > 21) {
 			System.out.println();
 			System.out.println(dealer.getName() + "(Dealer)");
 			System.out.println("----------------------------------------");
-			dHand.printHand();
+			dealer.getHand().printHand();
 			System.out.println("----------------------------------------");
-			System.out.println("Dealer Total: " + dHand.handValue());
+			System.out.println("Dealer Total: " + dealer.getHand().handValue());
 			System.out.println("----------------------------------------");
 			System.out.println("~~~Dealer busted~~~");
 			dBust = true;
 			judgement();
 			return dBust;
-		} else if (dHand.handValue() == 21) {
+		} else if (dealer.getHand().handValue() == 21) {
 			judgement();
 			return dBust;
 		} else {
 			System.out.println();
 			System.out.println(dealer.getName() + "(Dealer)");
 			System.out.println("----------------------------------------");
-			dHand.printHand();
+			dealer.getHand().printHand();
 			System.out.println("----------------------------------------");
-			System.out.println("Dealer Total: " + dHand.handValue());
+			System.out.println("Dealer Total: " + dealer.getHand().handValue());
 			System.out.println("----------------------------------------");
 			return dBust;
 		}
@@ -156,10 +152,10 @@ import java.util.Scanner;
 
 	 private void initialDeal() {
 		deck.addCardsToDeck();
-		deck.deal(pHand);
-		deck.deal(dHand);
-		deck.deal(pHand);
-		deck.deal(dHand);
+		deck.deal(player);
+		deck.deal(dealer);
+		deck.deal(player);
+		deck.deal(dealer);
 
 	}
 
@@ -172,19 +168,19 @@ import java.util.Scanner;
 		} else if (dBust) {
 			System.out.println("****** " + player.getName() + " is the winner. ******");
 			restart();
-		} else if (dHand.handValue() == 21) {
+		} else if (dealer.getHand().handValue() == 21) {
 			System.out.println("****** " + dealer.getName() + " has BLACKJACK. ******");
 			restart();
-		} else if (pHand.handValue() == 21) {
+		} else if (player.getHand().handValue() == 21) {
 			System.out.println("****** " + player.getName() + " has BLACKJACK. ******");
 			restart();
-		} else if (dHand.handValue() > pHand.handValue() && pHitOrStand.equals("S") && dHitOrStand.equals("S")) {
+		} else if (dealer.getHand().handValue() > player.getHand().handValue() && pHitOrStand.equals("S") && dHitOrStand.equals("S")) {
 			System.out.println("****** " + dealer.getName() + " is the winner. ******");
 			restart();
-		} else if (pHand.handValue() > dHand.handValue() && pHitOrStand.equals("S") && dHitOrStand.equals("S")) {
+		} else if (player.getHand().handValue() > dealer.getHand().handValue() && pHitOrStand.equals("S") && dHitOrStand.equals("S")) {
 			System.out.println(" ****** " + player.getName() + " is the winner. ******");
 			restart();
-		} else if (pHand.handValue() == dHand.handValue() && pHitOrStand.equals("S") && dHitOrStand.equals("S")) {
+		} else if (player.getHand().handValue() == dealer.getHand().handValue() && pHitOrStand.equals("S") && dHitOrStand.equals("S")) {
 			System.out.println("****** " + dealer.getName() + " is the winner. ******");
 			restart();
 		}

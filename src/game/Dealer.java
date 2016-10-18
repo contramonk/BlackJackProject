@@ -2,7 +2,7 @@ package game;
 
 public class Dealer extends Human {
 
-	public Dealer(String n, Hand h, double w) {
-		super(n, h, w);
+	public Dealer(String n, double w) {
+		super(n, w);
 	}
 }

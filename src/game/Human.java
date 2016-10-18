@@ -9,9 +9,9 @@ public class Human {
 	private Hand hand;
 	
 	// Constructor
-	public Human(String n, Hand h, double w) {
+	public Human(String n, double w) {
+		hand = new Hand();
 		setName(n);
-		setHand(h);
 		setWallet(w);
 	}
 	
