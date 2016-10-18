@@ -5,21 +5,10 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class Deck extends ArrayList<Card> implements Comparator<String> {
-	int numDelt;
 
 	// Constructor
-	public Deck(int nd) {
-		setNumDelt(nd);
-	}
-
-	// Get
-	public int getNumDelt() {
-		return numDelt;
-	}
-
-	// Set
-	public void setNumDelt(int nd) {
-		this.numDelt = nd;
+	public Deck() {
+		
 	}
 
 	public int compare(String o1, String o2) {
