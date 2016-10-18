@@ -34,5 +34,12 @@ public class Deck extends ArrayList<Card> implements Comparator<String> {
 		this.remove(0);
 		return topCard;
 	}
+	
+	// Deal
+	 public void deal(Hand h) {
+			Card deal = this.dealHand();
+			h.addCardToHand(deal);
+
+		}
 
 }

@@ -26,16 +26,13 @@ import java.util.Scanner;
 		dHitOrStand = "C";
 		pHitOrStand = "C";
 
-		introduction();
+		Menu menu = new Menu();
+		menu.menu(player, dealer);
+		
 		initialDeal();
 		startGame();
 
-	}
-
-	 private void deal(Hand h, Deck d) {
-		Card deal = d.dealHand();
-		h.addCardToHand(deal);
-
+		
 	}
 
 	 private void startGame() {
@@ -105,7 +102,7 @@ import java.util.Scanner;
 	}
 
 	 private boolean dealPlayer() {
-		deal(pHand, deck);
+		deck.deal(pHand);
 		System.out.println();
 		System.out.println(player.getName() + " (Player)");
 		System.out.println("----------------------------------------");
@@ -128,7 +125,7 @@ import java.util.Scanner;
 	}
 
 	 private boolean dealDealer() {
-		deal(dHand, deck);
+		deck.deal(dHand);
 		if (dHand.handValue() > 21) {
 			System.out.println();
 			System.out.println(dealer.getName() + "(Dealer)");
@@ -159,25 +156,10 @@ import java.util.Scanner;
 
 	 private void initialDeal() {
 		deck.addCardsToDeck();
-		deal(pHand, deck);
-		deal(dHand, deck);
-		deal(pHand, deck);
-		deal(dHand, deck);
-
-	}
-
-	 private void introduction() {
-
-		System.out.println("Welcome to BlackJack.");
-		System.out.print("What is your name? >> ");
-		String playerName = kb.next();
-		player.setName(playerName);
-		System.out.println();
-		System.out.print(playerName + ", what is your opponents name? >> ");
-		String dealerName = kb.next();
-		dealer.setName(dealerName);
-		System.out.println();
-		System.out.println(dealerName + " is dealing.");
+		deck.deal(pHand);
+		deck.deal(dHand);
+		deck.deal(pHand);
+		deck.deal(dHand);
 
 	}
 
