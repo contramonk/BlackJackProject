@@ -3,6 +3,7 @@ package game;
 import java.util.Scanner;
 
 public class Menu {
+
 	private Scanner kb = new Scanner(System.in);
 
 	public void menu(Player player, Dealer dealer) {

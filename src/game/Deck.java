@@ -6,16 +6,6 @@ import java.util.Comparator;
 
 public class Deck extends ArrayList<Card> implements Comparator<String> {
 
-	// Constructor
-	public Deck() {
-		
-	}
-
-	public int compare(String o1, String o2) {
-		return 0;
-	}
-	
-	// Create Deck
 	public void addCardsToDeck() {
 		for (Suit s : Suit.values()) {
 			for (Rank r : Rank.values()) {
@@ -25,20 +15,23 @@ public class Deck extends ArrayList<Card> implements Comparator<String> {
 		}
 		shuffle();
 	}
-	// Shuffle
+
 	public void shuffle() {
 		Collections.shuffle(this);
 	}
-	public Card dealHand() {
+
+	public Card pullCardFromDeck() {
 		Card topCard = this.get(0);
 		this.remove(0);
 		return topCard;
 	}
-	
-	// Deal
-	 public void deal(Human hum) {
-			hum.getHand().addCardToHand(dealHand());
 
-		}
+	public void deal(Human hum) {
+		hum.getHand().addCardToHand(pullCardFromDeck());
 
+	}
+
+	public int compare(String o1, String o2) {
+		return 0;
+	}
 }
