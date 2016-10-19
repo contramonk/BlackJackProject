@@ -3,19 +3,23 @@ package game;
 import java.util.Scanner;
 
 public class Menu {
-
+	String playerName;
+	String dealerName;
 	private Scanner kb = new Scanner(System.in);
 
 	public void menu(Player player, Dealer dealer) {
-		System.out.println("Welcome to BlackJack.");
+		System.out.println("Welcome to BlackJack. \n");
 		System.out.print("What is your name? >> ");
-		String playerName = kb.next();
-		player.setName(playerName);
+		playerName = kb.next();
+		System.out.print("\n" + "What is your opponents name? >> ");
+		dealerName = kb.next();
 		System.out.println();
-		System.out.print(playerName + ", what is your opponents name? >> ");
-		String dealerName = kb.next();
-		dealer.setName(dealerName);
-		System.out.println();
+		setNames(player, dealer);
+	}
+	public void setNames(Player p, Dealer d) {
+		p.setName(playerName);
+		d.setName(dealerName);
+		
 	}
 
 }

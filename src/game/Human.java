@@ -6,15 +6,15 @@ import java.util.List;
 public class Human {
 	
 	private String name;
-	private double wallet;
-	private Hand hand;
+	public Hand hand;
+	private int hitOrStand = 5;
 	private boolean bust = false;
+	WinCondition win = new WinCondition();
 
 	// Constructor
-	public Human(String n, double w) {
+	public Human(String n) {
 		hand = new Hand();
 		setName(n);
-		setWallet(w);
 	}
 
 	// Get
@@ -25,10 +25,10 @@ public class Human {
 	public Hand getHand() {
 		return hand;
 	}
-
-	public double getWallet() {
-		return wallet;
+	public int getHitOrStand() {
+		return hitOrStand;
 	}
+
 	public boolean getBust() {
 		return bust;
 	}
@@ -42,11 +42,11 @@ public class Human {
 		this.hand = h;
 	}
 
-	public void setWallet(double w) {
-		this.wallet = w;
-	}
 	public void setBust(boolean b) {
 		this.bust = b;
+	}
+	public void setHitOrStand(int h) {
+		this.hitOrStand = h;
 	}
 	
 	

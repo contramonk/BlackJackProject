@@ -6,48 +6,30 @@ public class BlackJack {
 
 	private Deck deck = new Deck();
 	private WinCondition win = new WinCondition();
+	public Player player;
+	public Dealer dealer;
 	private Scanner kb = new Scanner(System.in);
-	public String dHitOrStand = "C";
-	public String pHitOrStand = "C";
-	public Player player = new Player("def", 5000.0);
-	public Dealer dealer = new Dealer("tim", 5000.0);
 
 	public void run() {
 		deck = new Deck();
-		player = new Player("def", 5000);
-		dealer = new Dealer("def", 5000);
-		dHitOrStand = "C";
-		pHitOrStand = "C";
+		player = new Player("def");
+		dealer = new Dealer("def");
 
 		Menu menu = new Menu();
 		menu.menu(player, dealer);
 
-		deck.initialDeal(this, deck);
 		startGame();
 
 	}
 
 	private void startGame() {
-		System.out.println();
-		System.out.println(player.getName() + " (Player)");
-		System.out.println("----------------------------------------");
-		player.getHand().printHand();
-		System.out.println("----------------------------------------");
-		System.out.println("Total: " + player.getHand().handValue());
-		System.out.println("----------------------------------------");
-		System.out.println();
-		System.out.println(dealer.getName() + " (Dealer)");
-		System.out.println("----------------------------------------");
-		dealer.getHand().printHand();
-		System.out.println("----------------------------------------");
-		System.out.println("Total: " + dealer.getHand().handValue());
-		System.out.println("----------------------------------------");
+		deck.initialDeal(this, deck);
+		player.hand.print(player);
+		dealer.hand.print(dealer);
 		win.checkWinCondition(this);
-
-		dHitOrStand = "F";
 		gameLoop();
 
-		if (pHitOrStand.equals("S") && dHitOrStand.equals("S") || player.getBust() == false
+		if (player.getHitOrStand() == 2 && dealer.getHitOrStand() == 2 || player.getBust() == false
 				|| dealer.getBust() == false) {
 			win.checkWinCondition(this);
 		}
@@ -55,22 +37,25 @@ public class BlackJack {
 	}
 
 	public void gameLoop() {
-		while (!(pHitOrStand.equals("S") && dHitOrStand.equals("S")) || (player.getBust() && dealer.getBust())) {
-			System.out.println();
-			System.out.print("H) Hit\nS) Stand >> ");
-			pHitOrStand = kb.next();
-			System.out.println();
-			switch (pHitOrStand) {
-			case "H":
-				player.playerTurn(this, deck);
-				dealer.dealerTurn(this, deck);
-				break;
-			case "S":
-				dealer.dealerTurn(this, deck);
-				break;
-			}
+		
+		while (!(player.getHitOrStand() == 2 && dealer.getHitOrStand() == 2)
+				|| (player.getBust() && dealer.getBust())) {
+			round();
 		}
 
+	}
+
+	public void round() {
+		player.playerChoice();
+		switch (player.getHitOrStand()) {
+		case 1:
+			player.playerTurn(this, deck);
+			dealer.dealerTurn(this, deck);
+			break;
+		case 2:
+			dealer.dealerTurn(this, deck);
+			break;
+		}
 	}
 
 	public void restart() {

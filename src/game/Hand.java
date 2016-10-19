@@ -6,20 +6,6 @@ public class Hand extends ArrayList<Card> {
 	private int handTotal = 0;
 	int counter = 0;
 
-	public Hand() {
-
-	}
-
-	// Get
-	public int getHandTotal() {
-		return handTotal;
-	}
-
-	// Set
-	public void setHandTotal(int ht) {
-		this.handTotal = ht;
-	}
-
 	public void addCardToHand(Card c) {
 
 		this.add(c);
@@ -29,7 +15,7 @@ public class Hand extends ArrayList<Card> {
 	public int handValue() {
 		counter++;
 		handTotal = 0;
-		
+
 		for (int i = 0; i < this.size(); i++) {
 			handTotal += this.get(i).getValue();
 		}
@@ -47,11 +33,36 @@ public class Hand extends ArrayList<Card> {
 		return handTotal;
 
 	}
+	public void print(Human hum) {
+		System.out.println();
+		System.out.println(hum.getName() + " (" + hum.getClass().getSimpleName() + ")");
+		System.out.println("----------------------------------------");
+		listHand();
+		System.out.println("----------------------------------------");
+		System.out.println("Hand Total: " + handValue());
+		System.out.println("----------------------------------------");
+		if (hum.getBust() == true) {
+			System.out.println(hum.getClass().getSimpleName() + " BUSTED");
+		}
+	}
 
-	public void printHand() {
+	public void listHand() {
+
 		for (Card card : this) {
 			System.out.println(card);
 		}
 	}
+
+	// Get
+	public int getHandTotal() {
+		return handTotal;
+	}
+
+	// Set
+	public void setHandTotal(int ht) {
+		this.handTotal = ht;
+	}
+
+
 
 }

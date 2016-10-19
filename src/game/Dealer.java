@@ -1,53 +1,36 @@
 package game;
 
 public class Dealer extends Human {
-	WinCondition win = new WinCondition();
-	public Dealer(String n, double w) {
-		super(n, w);
+	
+	public Dealer(String n) {
+		super(n);
 	}
 	
 	public void dealerTurn(BlackJack bj, Deck deck) {
 		while (getHand().handValue() < 17) {
-			System.out.println();
-			System.out.println(getName() + " (Dealer) will hit");
+			System.out.println("\n" + getName() + " (Dealer) will hit \n");
 			dealDealer(bj, deck);
-			if (bj.pHitOrStand.equals("H")) {
+			if (this.getHitOrStand() == 1) {
 				bj.gameLoop();
 			}
 
-		} // after loop finishes this prints causing duplication
-		System.out.println();
-		System.out.println(getName() + " (Dealer)");
-		System.out.println("Dealer Total: " + getHand().handValue());
-		System.out.println("Dealer is staying \n");
-		bj.dHitOrStand = "S";
+		}
+		System.out.println("\n " + getName() + "Dealer is staying \n");
+		this.setHitOrStand(2);
 	}
 	
 	private boolean dealDealer(BlackJack bj, Deck deck) {
 		deck.deal(this);
 		if (getHand().handValue() > 21) {
-			System.out.println();
-			System.out.println(getName() + "(Dealer)");
-			System.out.println("----------------------------------------");
-			getHand().printHand();
-			System.out.println("----------------------------------------");
-			System.out.println("Dealer Total: " + getHand().handValue());
-			System.out.println("----------------------------------------");
-			System.out.println("~~~Dealer busted~~~");
 			setBust(true);
+			hand.print(this);
 			win.checkWinCondition(bj);
 			return getBust();
 		} else if (getHand().handValue() == 21) {
 			win.checkWinCondition(bj);
 			return getBust();
 		} else {
-			System.out.println();
-			System.out.println(getName() + "(Dealer)");
-			System.out.println("----------------------------------------");
-			getHand().printHand();
-			System.out.println("----------------------------------------");
-			System.out.println("Dealer Total: " + getHand().handValue());
-			System.out.println("----------------------------------------");
+			hand.print(this);
 			return getBust();
 		}
 
