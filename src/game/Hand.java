@@ -54,12 +54,10 @@ public class Hand extends ArrayList<Card> {
 		}
 	}
 
-	// Get
 	public int getHandTotal() {
 		return handTotal;
 	}
 
-	// Set
 	public void setHandTotal(int ht) {
 		this.handTotal = ht;
 	}

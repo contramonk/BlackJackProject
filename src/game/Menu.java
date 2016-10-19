@@ -16,10 +16,11 @@ public class Menu {
 		System.out.println();
 		setNames(player, dealer);
 	}
+
 	public void setNames(Player p, Dealer d) {
 		p.setName(playerName);
 		d.setName(dealerName);
-		
+
 	}
 
 }

@@ -15,19 +15,4 @@ public class Player extends Human {
 		System.out.println();
 	}
 
-//	public boolean playerTurn(BlackJack bj, Deck deck) {
-//		deck.deal(this);
-//		if (getHand().handValue() > 21) {
-//			setBust(true);
-//			hand.print(this);
-//			win.checkWinCondition(bj);
-//			return getBust();
-//
-//		} else if (getHand().handValue() == 21) {
-//			win.checkWinCondition(bj);
-//			return getBust();
-//		} else {
-//			return getBust();
-//		}
-//	}
 }

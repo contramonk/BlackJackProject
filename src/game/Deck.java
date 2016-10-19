@@ -30,15 +30,15 @@ public class Deck extends ArrayList<Card> implements Comparator<String> {
 		hum.getHand().addCardToHand(pullCardFromDeck());
 
 	}
-	
-	public void initialDeal(BlackJack bj, Deck deck) {
-			deck.addCardsToDeck();
-			deck.deal(bj.player);
-			deck.deal(bj.dealer);
-			deck.deal(bj.player);
-			deck.deal(bj.dealer);
 
-		}
+	public void initialDeal(BlackJack bj, Deck deck) {
+		deck.addCardsToDeck();
+		deck.deal(bj.player);
+		deck.deal(bj.dealer);
+		deck.deal(bj.player);
+		deck.deal(bj.dealer);
+
+	}
 
 	public int compare(String o1, String o2) {
 		return 0;

@@ -5,10 +5,10 @@ import java.util.Scanner;
 public class BlackJack {
 
 	private Deck deck = new Deck();
-	private WinCondition win = new WinCondition();
 	public Player player;
 	public Dealer dealer;
 	private Scanner kb = new Scanner(System.in);
+	private WinCondition win = new WinCondition();
 
 	public void run() {
 		deck = new Deck();
@@ -37,7 +37,7 @@ public class BlackJack {
 	}
 
 	public void gameLoop() {
-		
+
 		while (!(player.getHitOrStand() == 2 && dealer.getHitOrStand() == 2)
 				|| (player.getBust() && dealer.getBust())) {
 			round();

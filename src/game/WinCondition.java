@@ -29,6 +29,7 @@ public class WinCondition {
 				&& bj.dealer.getHitOrStand() == 2) {
 			System.out.println("****** " + bj.dealer.getName() + " is the winner. ******");
 			bj.restart();
+		
 		}
 
 	}

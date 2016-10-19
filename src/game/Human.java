@@ -4,19 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Human {
-	
+
 	private String name;
 	public Hand hand;
 	private int hitOrStand = 5;
 	private boolean bust = false;
 	WinCondition win = new WinCondition();
 
-	// Constructor
 	public Human(String n) {
 		hand = new Hand();
 		setName(n);
 	}
-	
+
 	public boolean turn(BlackJack bj, Deck deck) {
 		deck.deal(this);
 		if (getHand().handValue() > 21) {
@@ -35,7 +34,6 @@ public class Human {
 
 	}
 
-	// Get
 	public String getName() {
 		return name;
 	}
@@ -43,6 +41,7 @@ public class Human {
 	public Hand getHand() {
 		return hand;
 	}
+
 	public int getHitOrStand() {
 		return hitOrStand;
 	}
@@ -51,7 +50,6 @@ public class Human {
 		return bust;
 	}
 
-	// Set
 	public void setName(String n) {
 		this.name = n;
 	}
@@ -63,10 +61,9 @@ public class Human {
 	public void setBust(boolean b) {
 		this.bust = b;
 	}
+
 	public void setHitOrStand(int h) {
 		this.hitOrStand = h;
 	}
-	
-	
 
 }
