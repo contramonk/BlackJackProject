@@ -16,6 +16,24 @@ public class Human {
 		hand = new Hand();
 		setName(n);
 	}
+	
+	public boolean turn(BlackJack bj, Deck deck) {
+		deck.deal(this);
+		if (getHand().handValue() > 21) {
+			setBust(true);
+			hand.print(this);
+			win.checkWinCondition(bj);
+			return getBust();
+		} else if (getHand().handValue() == 21) {
+			hand.print(this);
+			win.checkWinCondition(bj);
+			return getBust();
+		} else {
+			hand.print(this);
+			return getBust();
+		}
+
+	}
 
 	// Get
 	public String getName() {

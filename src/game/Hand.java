@@ -16,14 +16,14 @@ public class Hand extends ArrayList<Card> {
 		counter++;
 		handTotal = 0;
 
-		for (int i = 0; i < this.size(); i++) {
-			handTotal += this.get(i).getValue();
+		for (int i = 0; i < size(); i++) {
+			handTotal += get(i).getValue();
 		}
 
-		if (handTotal > 21 && counter < this.size()) {
-			for (int i = 0; i < this.size(); i++) {
-				if (this.get(i).getValue() == 11) {
-					this.get(i).setValue(1);
+		if (handTotal > 21 && counter < size()) {
+			for (int i = 0; i < size(); i++) {
+				if (get(i).getValue() == 11) {
+					get(i).setValue(1);
 					break;
 				}
 			}
@@ -33,6 +33,7 @@ public class Hand extends ArrayList<Card> {
 		return handTotal;
 
 	}
+
 	public void print(Human hum) {
 		System.out.println();
 		System.out.println(hum.getName() + " (" + hum.getClass().getSimpleName() + ")");
@@ -62,7 +63,5 @@ public class Hand extends ArrayList<Card> {
 	public void setHandTotal(int ht) {
 		this.handTotal = ht;
 	}
-
-
 
 }

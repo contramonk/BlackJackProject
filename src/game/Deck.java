@@ -21,8 +21,8 @@ public class Deck extends ArrayList<Card> implements Comparator<String> {
 	}
 
 	public Card pullCardFromDeck() {
-		Card topCard = this.get(0);
-		this.remove(0);
+		Card topCard = get(0);
+		remove(0);
 		return topCard;
 	}
 

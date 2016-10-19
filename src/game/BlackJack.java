@@ -49,7 +49,7 @@ public class BlackJack {
 		player.playerChoice();
 		switch (player.getHitOrStand()) {
 		case 1:
-			player.playerTurn(this, deck);
+			player.turn(this, deck);
 			dealer.dealerTurn(this, deck);
 			break;
 		case 2:
